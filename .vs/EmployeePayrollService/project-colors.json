@@ -1,0 +1,11 @@
+{
+  "Version": 1,
+  "ProjectMap": {
+    "36f8a3b7-d42b-44e4-abc4-308f1715fd17": {
+      "ProjectGuid": "36f8a3b7-d42b-44e4-abc4-308f1715fd17",
+      "DisplayName": "EmployeePayrollService",
+      "ColorIndex": 0
+    }
+  },
+  "NextColorIndex": 1
+}
