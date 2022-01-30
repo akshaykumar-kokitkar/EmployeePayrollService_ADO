@@ -101,5 +101,34 @@ namespace EmployeePayrollService
             }
             return false;
         }
+
+        public bool UpdateBasicPay(string EmployeeName, double BasicPay)
+        {
+            try
+            {
+                using (connection)
+                {
+                    connection.Open();
+                    string query = @"update dbo.employee_payroll set BasicPay=@inputBasicPay where EmployeeName=@inputEmployeeName";
+                    SqlCommand command = new SqlCommand(query, connection);
+
+                    command.Parameters.AddWithValue("@inputBasicPay", BasicPay); 
+                    command.Parameters.AddWithValue("@inputEmployeeName", EmployeeName);
+                    var result = command.ExecuteNonQuery(); 
+                    Console.WriteLine("Record Update Successfully");
+                    connection.Close();
+                    ConnectionString(); //display method
+                }
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
+            finally
+            {
+                connection.Close();
+            }
+            return true;
+        }
     }
 }
