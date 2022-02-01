@@ -62,6 +62,49 @@ namespace EmployeePayrollService
                 this.connection.Close();
             }
         }
+<<<<<<< HEAD
        
+=======
+        public bool AddEmployee(EmployeePayroll employeePayroll)
+        {
+            SqlConnection connection = new SqlConnection(connectionString);
+            try
+            {
+                using (connection)
+                {
+                    SqlCommand command = new SqlCommand("dbo.spemployeedetails", connection);
+
+                    command.CommandType = System.Data.CommandType.StoredProcedure;
+
+                    command.Parameters.AddWithValue("@name", employeePayroll.name);
+                    command.Parameters.AddWithValue("@basic_pay", employeePayroll.basic_pay);
+                    command.Parameters.AddWithValue("@StartDate", DateTime.Now);
+                    command.Parameters.AddWithValue("@Gender", employeePayroll.Gender);
+                    command.Parameters.AddWithValue("@phone", employeePayroll.phone);
+                    command.Parameters.AddWithValue("@address", employeePayroll.address);
+                    command.Parameters.AddWithValue("@Department", employeePayroll.Department);
+                    command.Parameters.AddWithValue("@deductions", employeePayroll.deductions);
+                    command.Parameters.AddWithValue("@taxable_pay", employeePayroll.taxable_pay);
+                    command.Parameters.AddWithValue("@income_tax", employeePayroll.income_tax);
+                    command.Parameters.AddWithValue("@net_pay", employeePayroll.net_pay);
+                    connection.Open();
+                    var result = command.ExecuteNonQuery();
+                    connection.Close();
+                    if (result != 0)
+                        return true;
+                    return false;
+                }
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e.Message);
+            }
+            finally
+            {
+                this.connection.Close();
+            }
+            return false;
+        }
+>>>>>>> UC2-RetrieveDataFromDB
     }
 }
