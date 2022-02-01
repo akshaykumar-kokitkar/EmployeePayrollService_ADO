@@ -63,8 +63,11 @@ namespace EmployeePayrollService
             }
         }
 <<<<<<< HEAD
+=======
+<<<<<<< HEAD
        
 =======
+>>>>>>> master
         public bool AddEmployee(EmployeePayroll employeePayroll)
         {
             SqlConnection connection = new SqlConnection(connectionString);
