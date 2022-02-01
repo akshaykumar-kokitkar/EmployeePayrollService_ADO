@@ -8,7 +8,7 @@ namespace EmployeePayrollService
     {
         public static string connectionString = @"Data Source=localhost\SQLEXPRESS;Initial Catalog=payroll_service;Integrated Security=True";
         SqlConnection connection = new SqlConnection(connectionString);
-        
+        //EmployeePayroll employeePayroll = new EmployeePayroll();
 
         public void ConnectionString()
         {
@@ -40,7 +40,7 @@ namespace EmployeePayrollService
                             employeePayroll.net_pay = dr.GetDouble(9);
 
                             //Display the record
-                            Console.WriteLine("{0},{1},{2},{3},{4},{5},{6},{7},{8},{9}", employeePayroll.id, employeePayroll.name, employeePayroll.address, employeePayroll.Department, employeePayroll.Gender, employeePayroll.basic_pay, employeePayroll.deductions, employeePayroll.taxable_pay, employeePayroll.income_tax, employeePayroll.net_pay );
+                            Console.WriteLine("{0},{1},{2},{3},{4},{5},{6},{7},{8},{9}", employeePayroll.id, employeePayroll.name, employeePayroll.address, employeePayroll.Department, employeePayroll.Gender, employeePayroll.basic_pay, employeePayroll.deductions, employeePayroll.taxable_pay, employeePayroll.income_tax, employeePayroll.net_pay);
                             Console.WriteLine("\n");
                         }
                     }
@@ -62,6 +62,12 @@ namespace EmployeePayrollService
                 this.connection.Close();
             }
         }
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+       
+=======
+>>>>>>> master
         public bool AddEmployee(EmployeePayroll employeePayroll)
         {
             SqlConnection connection = new SqlConnection(connectionString);
@@ -102,34 +108,6 @@ namespace EmployeePayrollService
             }
             return false;
         }
-
-        public bool UpdateBasicPay(string EmployeeName, double BasicPay)
-        {
-            try
-            {
-                using (connection)
-                {
-                    connection.Open();
-                    string query = @"update dbo.employee_payroll set BasicPay=@inputBasicPay where EmployeeName=@inputEmployeeName";
-                    SqlCommand command = new SqlCommand(query, connection);
-
-                    command.Parameters.AddWithValue("@inputBasicPay", BasicPay); 
-                    command.Parameters.AddWithValue("@inputEmployeeName", EmployeeName);
-                    var result = command.ExecuteNonQuery(); 
-                    Console.WriteLine("Record Update Successfully");
-                    connection.Close();
-                    ConnectionString(); //display method
-                }
-            }
-            catch (Exception ex)
-            {
-                throw new Exception(ex.Message);
-            }
-            finally
-            {
-                connection.Close();
-            }
-            return true;
-        }
+>>>>>>> UC2-RetrieveDataFromDB
     }
 }
