@@ -62,36 +62,37 @@ namespace EmployeePayrollService
                 this.connection.Close();
             }
         }
-        public  bool AddEmployee(EmployeePayroll model)
+        public bool AddEmployee(EmployeePayroll employeePayroll)
         {
+            SqlConnection connection = new SqlConnection(connectionString);
             try
             {
-                using (this.connection)
+                using (connection)
                 {
-                    SqlCommand command = new SqlCommand("spemployeedetails", this.connection);
+                    SqlCommand command = new SqlCommand("dbo.spemployeedetails", connection);
 
                     command.CommandType = System.Data.CommandType.StoredProcedure;
-                    
-                    command.Parameters.AddWithValue("@name", model.name);
-                    command.Parameters.AddWithValue("@basic_pay", model.basic_pay);
+
+                    command.Parameters.AddWithValue("@name", employeePayroll.name);
+                    command.Parameters.AddWithValue("@basic_pay", employeePayroll.basic_pay);
                     command.Parameters.AddWithValue("@StartDate", DateTime.Now);
-                    command.Parameters.AddWithValue("@Gender", model.Gender);
-                    command.Parameters.AddWithValue("@phone", model.phone);
-                    command.Parameters.AddWithValue("@address", model.address);
-                    command.Parameters.AddWithValue("@Department", model.Department);
-                    command.Parameters.AddWithValue("@deductions", model.deductions);
-                    command.Parameters.AddWithValue("@taxable_pay", model.taxable_pay);
-                    command.Parameters.AddWithValue("@income_tax", model.income_tax);
-                    command.Parameters.AddWithValue("@net_pay", model.net_pay);
-                    this.connection.Open();
+                    command.Parameters.AddWithValue("@Gender", employeePayroll.Gender);
+                    command.Parameters.AddWithValue("@phone", employeePayroll.phone);
+                    command.Parameters.AddWithValue("@address", employeePayroll.address);
+                    command.Parameters.AddWithValue("@Department", employeePayroll.Department);
+                    command.Parameters.AddWithValue("@deductions", employeePayroll.deductions);
+                    command.Parameters.AddWithValue("@taxable_pay", employeePayroll.taxable_pay);
+                    command.Parameters.AddWithValue("@income_tax", employeePayroll.income_tax);
+                    command.Parameters.AddWithValue("@net_pay", employeePayroll.net_pay);
+                    connection.Open();
                     var result = command.ExecuteNonQuery();
-                    this.connection.Close();
+                    connection.Close();
                     if (result != 0)
                         return true;
                     return false;
                 }
             }
-            catch(Exception e)
+            catch (Exception e)
             {
                 Console.WriteLine(e.Message);
             }
