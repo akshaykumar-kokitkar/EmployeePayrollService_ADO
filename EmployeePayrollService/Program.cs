@@ -10,8 +10,6 @@ namespace EmployeePayrollService
 
             EmployeeRepo repo = new EmployeeRepo();
             repo.ConnectionString();
-<<<<<<< HEAD
-=======
 
             EmployeePayroll employeePayroll = new EmployeePayroll();
             //employee.id = 5;
@@ -30,7 +28,7 @@ namespace EmployeePayrollService
             if (repo.AddEmployee(employeePayroll))
                 Console.WriteLine("Records added successfully");
             repo.AddEmployee(employeePayroll);
->>>>>>> UC2-RetrieveDataFromDB
+
         }
     }
 }
